@@ -1,0 +1,19 @@
+<%- include('../../layout/header.html') -%>
+
+HOMEPAGE CONTENT
+
+<hr>
+<div>The color is : <%= color %> </div>
+
+<hr>
+<ul>
+<% for (let fruit of fruits) { %>
+    <li><%= fruit %></li>
+<% } %>
+</ul>
+
+<hr>
+<div>Firstname : <%= user.firstname %></div>
+<div>Lastname : <%= user.lastname %></div>
+
+<%- include('../../layout/footer.html') -%>
