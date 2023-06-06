@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon server.js"
+    "serve": "nodemon server.js",
+    "start": "electron .",
+    "build": "electron-builder build --mac --win --x64"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +18,8 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
+    "electron": "^25.0.1",
+    "electron-builder": "^23.6.0",
     "nodemon": "^2.0.22"
   }
 }

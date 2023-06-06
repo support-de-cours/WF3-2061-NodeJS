@@ -1,12 +1,11 @@
 "use strict";
 
-const api_url = "https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json";
-
 // Get HTML Elements
 // --
 
 const el_latitude = document.querySelector('#latitude');
 const el_longitude = document.querySelector('#longitude');
+const el_temperature = document.querySelector('#temperature');
 
 
 // Start Geolocation
@@ -34,11 +33,21 @@ function refreshPosition(position)
     el_longitude.innerText = position.coords.longitude;
 
     // Rewrite the API url with lat & lon values
-    let url = api_url;
-        url = url.replace("{latitude}", position.coords.latitude);
-        url = url.replace("{longitude}", position.coords.longitude);
+    let geolocation_url = openStreetMapUrl;
+        geolocation_url = geolocation_url.replace("{latitude}", position.coords.latitude);
+        geolocation_url = geolocation_url.replace("{longitude}", position.coords.longitude);
+    
+    let forecast_url = openMeteoUrl;
+        forecast_url = forecast_url.replace("{latitude}", position.coords.latitude);
+        forecast_url = forecast_url.replace("{longitude}", position.coords.longitude);
 
+
+        fetch(forecast_url)
+            .then(response => response.json())
+            .then(data => {
+
+                el_temperature.innerText = data.current_weather.temperature;
+                console.log( data );
+            })
     
-    
-    console.log( url );
 }
